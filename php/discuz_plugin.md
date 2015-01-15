@@ -40,6 +40,7 @@
             ......
             return ...;
         }
+        
         ......
     }
     
@@ -61,6 +62,7 @@
             ......
             return ...;
         }
+        
         ......
     }
 
@@ -75,7 +77,8 @@ install.php用于插件安全时执行，uninstall.php插件卸载时执行，up
     ...
     EOF;
     
-    runquery($sql);
+    // 公共函数库
+    runquery( $sql );
 
 ## table文件夹下的数据访问层
 
