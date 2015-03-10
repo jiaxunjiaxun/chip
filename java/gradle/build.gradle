@@ -1,0 +1,81 @@
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'jetty'
+apply plugin: 'idea'
+
+sourceCompatibility = 1.5
+version = '1.0'
+project.webAppDirName = 'WebContent'
+
+sourceSets {
+    main {
+        java { srcDir 'src' }
+        resources { srcDir 'src' }
+    }
+    test {
+        java { srcDir('src') }
+        resources { srcDir('src') }
+    }
+}
+
+configurations { moreLibs }
+
+task scaffold << {
+    sourceSets*.java.srcDirs*.each { it.mkdirs() }
+    sourceSets*.resources.srcDirs*.each { it.mkdirs() }
+    // Project structure
+    def package_collection = files(
+            "$pj_src/config",
+            "$pj_src/$pj_base/$pj_common/$pj_model",
+            "$pj_src/$pj_base/$pj_common/$pj_dao",
+            "$pj_src/$pj_base/$pj_common/$pj_service",
+            "$pj_src/$pj_base/$pj_common/$pj_controller",
+            "$pj_src/$pj_base/$project.name/$pj_model",
+            "$pj_src/$pj_base/$project.name/$pj_dao",
+            "$pj_src/$pj_base/$project.name/$pj_service",
+            "$pj_src/$pj_base/$project.name/$pj_controller",
+            "$webAppDirName/WEB-INF"
+    )
+    package_collection.each { file ->
+        println(file.path)
+        file.mkdirs()
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Local library
+    compile fileTree(dir: "WebContent/WEB-INF/lib", include: '*.jar')
+    // Spring
+    compile("org.springframework:spring-webmvc:$version_spring")
+    compile("org.springframework:spring-jdbc:$version_spring")
+    compile("org.springframework:spring-orm:$version_spring");
+    // Hibernate, persistence and pool
+    compile("org.hibernate:hibernate-core:$version_hibernate")
+    compile("com.mchange:c3p0:$version_c3p0")
+    compile("org.javassist:javassist:3.15.0-GA")
+    compile("mysql:mysql-connector-java:5.1.31")
+    // Log
+    compile("org.slf4j:slf4j-simple:1.7.7")
+    // Runtime
+    runtime("javax.servlet:javax.servlet-api:3.1.0")
+    runtime("javax.servlet:jstl:1.2")
+
+}
+
+war {
+    exclude 'WEB-INF/lib/**'
+    exclude 'WEB-INF/classes/**'
+}
+
+jar {
+    baseName = 'jx_gradle'
+    version = '0.1.0'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
