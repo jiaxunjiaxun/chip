@@ -18,3 +18,7 @@ Convert character set of file
 
     curl --retry [retry times] --retry-delay [delay seconds] --retry-max-time [retry seconds] [url] -o [file]
     wget -t [retry times] -w [delay seconds] -T [retry seconds] [url] -O [file]
+
+## Kill process
+
+    ps -ef | grep what_you_want | grep -v grep | cut -c 9-15 | xargs kill -9
