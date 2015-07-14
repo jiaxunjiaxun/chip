@@ -32,5 +32,5 @@
     revoke drop on db.* from 'user'@'host';
 
 ### Drop user
-    drop 'user'@'host';
+    drop user 'user'@'host';
 
