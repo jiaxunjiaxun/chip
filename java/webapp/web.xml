@@ -10,6 +10,16 @@
         <welcome-file>default.jsp</welcome-file>
     </welcome-file-list>
 
+    <!-- Error page -->
+    <error-page>
+        <error-code>404</error-code>
+        <location>/err_404.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/err_500.jsp</location>
+    </error-page>
+
     <!-- Character set filter -->
     <filter>
         <filter-name>characterEncodingFilter</filter-name>
