@@ -14,3 +14,11 @@
         viewport.setAttribute('content', viewport_content);
         el_html.style.fontSize = BASE_FONT_SIZE * pixel_ratio + 'px';
     }));
+
+## Meta viewport
+
+### For percentage and 'rem'
+&lt;meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" /&gt;
+
+### For viewport, pixel ratio and 'rem'
+&lt;meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" /&gt;
