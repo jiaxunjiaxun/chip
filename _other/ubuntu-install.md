@@ -75,6 +75,7 @@
 
     sudo apt-get install nodejs
     sudo apt-get install npm
+    sudo apt-get install phantomjs
 
 # Redis and MongoDB
 
@@ -82,6 +83,14 @@
 
     sudo apt-get install mongodb mongodb-server mongodb-client
     sudo apt-get install redis-server redis-tools
+
+# GCC
+
+    sudo apt-get install gcc g++ gdb
+
+# Python
+
+    sudo apt-get install python
 
 # Open JDK
 
