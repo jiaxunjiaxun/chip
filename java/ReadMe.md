@@ -8,7 +8,22 @@
 
 ### Oracle JDK
 
+#### Install
+
     sudo apt-get purge openjdk*
     sudo add-apt-repository ppa:webupd8team/java
     sudo apt-get update
     sudo apt-get install oracle-java [version] -installer
+    
+#### Management
+
+    sudo update-alternatives --config java
+    sudo update-alternatives --config javac
+
+#### Environment Variable
+
+    sudo nano /etc/environment
+    # See Management
+    JAVA_HOME="YOUR_PATH"
+    source /etc/environment
+    echo $JAVA_HOME
