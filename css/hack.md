@@ -31,6 +31,10 @@
     selector { _property: value; }
     _selector { property: value; }
     selector { property: value; property: value!important; } // IE6 不支持同一选择符中的!important
+    
+#### IE6 inline-block
+
+    { display: inline-block; _display: inline; zoom: 1; }
 
 ### IE 6,7
 

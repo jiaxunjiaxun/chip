@@ -25,6 +25,27 @@
     }
     @media screen and (max-width: 600px) { ... }
     @media screen and (max-device-width: 480px) { ... }
+    
+    html {
+        /* viewport device-ratio */
+        font-size: [12 * device-ratio]px;
+        
+        /* viewport device-width */
+        font-size: 625%
+    }
+    
+    body {
+        -webkit-text-size-adjust: none;
+        -webkit-user-select: none;
+        -webkit-touch-callout: none;
+        -webkit-user-drag: none;
+        
+        /* viewport device-ratio */
+        font: 1rem/1.5rem 'Helvetica Neue', 'Helvetica', 'Tahoma', 'Arial', sans-serif;
+        
+        /* viewport device-width */
+        font: 0.12rem/0.18rem 'Georgia', 'STHeiti', 'SimHei', sans-serif
+    }
 
 ### iPhone Font Size
 
@@ -93,4 +114,3 @@
 - Times/Times New Roman
 - Trebuchet MS
 - Verdana
-
