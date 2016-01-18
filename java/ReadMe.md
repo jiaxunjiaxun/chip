@@ -27,3 +27,7 @@
     JAVA_HOME="YOUR_PATH"
     source /etc/environment
     echo $JAVA_HOME
+
+#### Other tools
+
+    sudo apt-get install ant maven ivy groovy gradle
