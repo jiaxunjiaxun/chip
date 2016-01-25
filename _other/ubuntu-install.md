@@ -43,68 +43,11 @@
 
     sudo apt-get install mysql-server mysql-client
 
-# PHP
+# Chrome
 
-## install
-
-    sudo apt-get install php5 libapache2-mod-php5
-    sudo apt-get install php5-fpm
-
-## PHP extension
-
-- php_bz2
-- php_curl
-- php_mbstring
-- php_exif
-- php_gd2
-- php_gettext
-- php_mysql
-- php_mysqli
-- php_openssl
-- php_pdo_mysql
-- php_pdo_sqlite
-- php_soap
-- php_sockets
-- php_sqlite3
-- php_xmlrpc
-- php_xsl
-
-# Nodejs and NPM
-
-## install
-
-    sudo apt-get install nodejs
-    sudo apt-get install npm
-    sudo apt-get install phantomjs
-
-# Redis and MongoDB
-
-## install
-
-    sudo apt-get install mongodb mongodb-server mongodb-client
-    sudo apt-get install redis-server redis-tools
-
-# GCC
-
-    sudo apt-get install gcc g++ gdb
-
-# Python
-
-    sudo apt-get install python
-
-# Open JDK
-
-    sudo apt-get install openjdk-8-jdk openjdk-8-doc openjdk-8-source
-
-# Oracle Java
-
-- download java from [Oracle](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
-- unzip package
-- export JAVA_HOME=/home/ubuntu/java/jdk1.7
-- export PATH=$JAVA_HOME/bin:$PATH
-
-# Hadoop
-
-- jdk, maven, ant, cmake, gcc, g++, protobuf, findbugs
-- download hadoop
-- mvn clean package -Pdist,native -DskipTests -Dtar
+    wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+    sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+    sudo apt-get update
+    sudo apt-get install google-chrome
+    sudo apt-get install google-chrome-beta
+    sudo apt-get install google-chrome-unstable
