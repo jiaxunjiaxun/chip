@@ -4,6 +4,10 @@
     vim /etc/environment
     source /etc/environment
 
+# APT
+
+[APT How to](https://help.ubuntu.com/community/AptGet/Howto)
+
 # Apache
 
 ## install
