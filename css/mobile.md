@@ -34,6 +34,23 @@
         font-size: 625%
     }
     
+    @media screen and (min-width: 350px) {
+        html { font-size: 291.667%; }
+    }
+    @media screen and (min-width: 410px) {
+        html { font-size: 341.667%; }
+    }
+    @media screen and (min-width: 480px) {
+        html { font-size: 400%; }
+    }
+    @media screen and (min-width: 640px) {
+        html { font-size: 533.333%; }
+    }
+    @media screen and (min-width: 750px) {
+        html { font-size: 625%; }
+    }
+    html { font-size: 312.5%; }
+    
     body {
         -webkit-text-size-adjust: none;
         -webkit-user-select: none;
