@@ -6,6 +6,13 @@
 
     sudo apt-get install php5 libapache2-mod-php5
     sudo apt-get install php5-fpm
+    
+    [/etc/php5/fpm/php.ini]
+    cgi.fix_pathinfo=0
+    [/etc/php5/fpm/pool.d/www.conf]
+    listen=/var/run/php5-fpm.sock
+    
+    sudo service php5-fpm restart
 
 ### PHP extension
 
@@ -22,3 +29,13 @@
     sudo apt-get install python-software-properties
     sudo apt-get update
     sudo apt-get install php5
+
+### PHP Pear upgrade
+
+    pear upgrade-all
+
+---
+
+    cd path/to/tgz/
+    unzip *.tgz
+    pear upgrade *.tar
