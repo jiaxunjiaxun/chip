@@ -91,6 +91,15 @@
             }
         };
         */
+        
+        // AMD define
+        var obj = {};
+        if ('function' === typeof define && define.amd) {
+            window.define('module-name', [/*require-list*/], function() {
+                return obj;
+            });
+        }
+        return obj;
 
         window.CIIC = CIIC;
     }));
