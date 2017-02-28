@@ -121,7 +121,7 @@
 
 # Backup 10 days
 
-#!/bin/bash
+[Ref](http://www.2daygeek.com/shell-script-for-mysql-database-backup-automation/)
 
     #!/bin/bash
     DATE=$(date +%d-%m-%Y)

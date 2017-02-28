@@ -1,7 +1,8 @@
 # LNMP
 
 [Ref](http://linux.it.net.cn/Ubuntu/2016/0403/20991.html)
-
+[Ref](https://www.zybuluo.com/happyfans/note/161734)
+[Ref](http://blog.csdn.net/hguisu/article/details/8930668)
 ## MySQL
 
     sudo apt-get install mysql-server mysql-client
