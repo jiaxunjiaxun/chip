@@ -18,10 +18,9 @@
 
 ### Gradle command
 
+~~~ gradle
 gradle build
-
 gradle -q taskName
-
 gradle idea
-
 gradle jettyRun
+~~~

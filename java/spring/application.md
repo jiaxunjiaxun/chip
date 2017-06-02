@@ -2,45 +2,54 @@
 
 ## Annotation
 
-    <context:component-scan base-package="[package]"/>
-    <context:annotation-config/>
-    <tx:annotation-driven/>
-    <mvc:annotation-driven/>
-    
+~~~ xml
+<context:component-scan base-package="[package]"/>
+<context:annotation-config/>
+<tx:annotation-driven/>
+<mvc:annotation-driven/>
+~~~
+
 ## Template
-    
+
 ### Resource
 
-    <mvc:resources mapping="/resource/**" location="/resource/"/>
+~~~ xml
+<mvc:resources mapping="/resource/**" location="/resource/"/>
+~~~
 
 ### Simple JSP
 
 path: /views/
 
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/views/"/>
-        <property name="suffix" value=".jsp"/>
-    </bean>
+~~~ xml
+<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<property name="prefix" value="/views/"/>
+	<property name="suffix" value=".jsp"/>
+</bean>
+~~~
 
 ### FreeMarker
 
 path: /views/
 
-    <bean id="freeMarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
-		<property name="templateLoaderPaths" value="/views/"/>
-		<property name="defaultEncoding" value="UTF-8"/>
-	</bean>
-	<bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
-		<property name="contentType" value="text/html;charset=UTF-8"/>
-		<property name="prefix" value=""/>
-		<property name="suffix" value=".ftl"/>
-	</bean>
-    
+~~~ xml
+<bean id="freeMarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+	<property name="templateLoaderPaths" value="/views/"/>
+	<property name="defaultEncoding" value="UTF-8"/>
+</bean>
+<bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+	<property name="contentType" value="text/html;charset=UTF-8"/>
+	<property name="prefix" value=""/>
+	<property name="suffix" value=".ftl"/>
+</bean>
+~~~
+
 ### Global Exception
 
-	<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
-		<property name="defaultErrorView" value="/error/error"/>
-		<property name="defaultStatusCode" value="500"/>
-		<property name="warnLogCategory" value="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver"/>
-	</bean>
-
+~~~ xml
+<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+	<property name="defaultErrorView" value="/error/error"/>
+	<property name="defaultStatusCode" value="500"/>
+	<property name="warnLogCategory" value="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver"/>
+</bean>
+~~~

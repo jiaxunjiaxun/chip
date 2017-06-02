@@ -4,93 +4,136 @@
 
 Convert character set of file
 
-    #!/bin/sh
-    
-    for i in `find ./ -name "*.php"`
-    do
-        echo $i;
-        iconv -c -f gb18030 -t utf8 $i -o /tmp/convert.tmp;
-        mv /tmp/convert.tmp $i;
-    done
-    rm /tmp/convert.tmp
+~~~ shell
+for i in `find ./ -name "*.php"`
+do
+    echo $i;
+    iconv -c -f gb18030 -t utf8 $i -o /tmp/convert.tmp;
+    mv /tmp/convert.tmp $i;
+done
+rm /tmp/convert.tmp
+~~~
 
 ## Fetch Page
 
-    curl --retry [retry times] --retry-delay [delay seconds] --retry-max-time [retry seconds] [url] -o [file]
-    wget -t [retry times] -w [delay seconds] -T [retry seconds] [url] -O [file]
+~~~ shell
+curl --retry [retry times] --retry-delay [delay seconds] --retry-max-time [retry seconds] [url] -o [file]
+wget -t [retry times] -w [delay seconds] -T [retry seconds] [url] -O [file]
+~~~
 
 ## Kill process
 
-    ps -ef | grep what_you_want | grep -v grep | cut -c 9-15 | xargs kill -9
+~~~ shell
+ps -ef | grep what_you_want | grep -v grep | cut -c 9-15 | xargs kill -9
+~~~
 
-## Clear kernel
+## Clean old kernel
 
-Note: kernel version, do not remove all
+**Note**: kernel version, do not remove all
 
-    rpm -q kernel
-    rpm -e kernel-xxxxxx
+~~~ shell
+# [CentOS]
+# check current kernel
+uname -r
+# list all kernel
+rpm -q kernel
+# remove unused kernel
+rpm -e kernel-xxxxxx
+~~~
 
 ## Apt update
 
-    apt-get update
-    apt-get upgrade
-    apt-get autoremove
-    apt-get autoclean
+~~~ shell
+apt-get update
+apt-get dist-upgrade
+apt-get upgrade
+apt-get autoremove
+apt-get autoclean
+# after 16.04
+apt update
+apt dist-upgrade
+apt upgrade
+apt autoremove
+apt autoclean
+~~~
 
 ## Tar, gzip and zip
 
 ### tar package
 
-    tar -cvf /path/to/dest/pkg.tar /path/to/src
+~~~ shell
+tar -cvf /path/to/dest/pkg.tar /path/to/src
+~~~
 
 ### tar gzip package
 
-    tar -zcvf /path/to/dest/pkg.tgz /path/to/src
-    tar --exclude /path/to/src/exclude -zcvf /path/to/dest/pkg.tar.gz /path/to/src
+~~~ shell
+tar -zcvf /path/to/dest/pkg.tgz /path/to/src
+tar --exclude /path/to/src/exclude -zcvf /path/to/dest/pkg.tar.gz /path/to/src
+~~~
 
 ### tar bz2 package
 
-    tar -jcvf /path/to/dest/pkg.tar.bz2 /path/to/src
+~~~ shell
+tar -jcvf /path/to/dest/pkg.tar.bz2 /path/to/src
+~~~
 
 ### list tgz package
 
-    tar -ztvf /path/to/src/pkg.tar.gz
+~~~ shell
+tar -ztvf /path/to/src/pkg.tar.gz
+~~~
 
 ### tar unwrap to current path
 
-    tar -zxvf /path/to/src/pkg.tar.gz
+~~~ shell
+tar -zxvf /path/to/src/pkg.tar.gz
+~~~
 
 ### tar unwrap part of package to current path
 
-    tar -zxvf /path/to/src/pkg.tar.gz part/in/package
+~~~ shell
+tar -zxvf /path/to/src/pkg.tar.gz part/in/package
+~~~
 
 ### gzip
 
-    -c target zip file
-    -d unzip file
-    -l list zip file
-    -r recursive
+~~~
+-c target zip file
+-d unzip file
+-l list zip file
+-r recursive
+~~~
 
 ### zip and unzip
 
-    -r recursive
-
-    -v list zip file
-    -d target path
+~~~
+-r recursive
+-v list zip file
+-d target path
+~~~
 
 ## netstat
 
-    -a (all)显示所有选项，默认不显示LISTEN相关
-    -t (tcp)仅显示tcp相关选项
-    -u (udp)仅显示udp相关选项
-    -n 拒绝显示别名，能显示数字的全部转化成数字。
-    -l 仅列出有在 Listen (监听) 的服務状态
-    -p 显示建立相关链接的程序名
-    -r 显示路由信息，路由表
-    -e 显示扩展信息，例如uid等
-    -s 按各个协议进行统计
-    -c 每隔一个固定时间，执行该netstat命令。
+~~~
+-a (all)显示所有选项，默认不显示LISTEN相关
+-t (tcp)仅显示tcp相关选项
+-u (udp)仅显示udp相关选项
+-n 拒绝显示别名，能显示数字的全部转化成数字。
+-l 仅列出有在 Listen (监听) 的服務状态
+-p 显示建立相关链接的程序名
+-r 显示路由信息，路由表
+-e 显示扩展信息，例如uid等
+-s 按各个协议进行统计
+-c 每隔一个固定时间，执行该netstat命令。
+~~~
 
 ### security check
 
-    netstat -alt
+~~~ shell
+# check tcp port
+netstat -alt
+
+# check changelog [CentOS]
+rpm -qi --changelog <package name> | grep CVE-
+~~~
