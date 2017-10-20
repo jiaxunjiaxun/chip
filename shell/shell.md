@@ -137,3 +137,14 @@ netstat -alt
 # check changelog [CentOS]
 rpm -qi --changelog <package name> | grep CVE-
 ~~~
+
+### mount nfs
+
+[ref](http://www.tutorialspoint.com/unix_commands/mount.htm)
+
+~~~ shell
+mkdir -p /path/to/mount
+
+mount -t nfs -o rw -v [nfs ip address]:/path/to/dst /path/to/mount
+mount -t cifs -o username=[user],password=[pwd] //[cifs ip address]/path/to/dst /path/to/mount
+~~~
