@@ -109,6 +109,7 @@ tar -zxvf /path/to/src/pkg.tar.gz part/in/package
 
 ~~~
 -r recursive
+# zip -r zip_file directory
 -v list zip file
 -d target path
 ~~~

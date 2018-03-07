@@ -24,3 +24,13 @@ gradle -q taskName
 gradle idea
 gradle jettyRun
 ~~~
+
+### Fat Jetty and Tomcat
+
+~~~ bash
+gradle appRun
+gradle buildProduct
+~~~
+
+[Gretty doc](http://akhikhl.github.io/gretty-doc/index.html)
+[Gretty src](https://github.com/akhikhl/gretty)

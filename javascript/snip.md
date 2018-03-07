@@ -228,3 +228,28 @@ module.exports = { /* ... */ } // correct.
 **module.dependencies** (array): Module dependencies.
 
 **module.exports** (object): Module exports
+
+## Some function
+
+### Get URL query parameters
+
+~~~javascript
+function getQueryParameters(str) {
+    var i, len, pair, params = {},
+        search_string = (str || document.location.search).replace(/(^\?)/, ''),
+        search_split = search_string.split('&');
+    for (i = 0, len = search_split.length; i < len; i++) {
+        pair = search_split[i].split('=');
+        params[pair[0]] = window.decodeURIComponent(pair[1]);
+    }
+    return params;
+}
+
+jQuery.extend({
+    getQueryParameters: function(str) {
+        return (str || document.location.search).replace(/(^\?)/, '').split('&').map(function(n) {
+            return n = n.split('='), this[n[0]] = n[1], this
+        }.bind({}))[0];
+    }
+});
+~~~
