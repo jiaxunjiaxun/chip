@@ -49,3 +49,15 @@ cd path/to/tgz/
 unzip *.tgz
 pear upgrade *.tar
 ~~~
+
+### PHP CMS
+
+[WordPress](https://wordpress.org/)\
+[TYPO3](https://typo3.org/)\
+[Joomla!](https://www.joomla.org/)\
+[Drupal](https://www.drupal.org/)\
+[Contao](https://contao.org/en/)
+
+#### Static Generator
+[List](https://www.staticgen.com/)\
+[PHP Solution](https://sculpin.io/)
