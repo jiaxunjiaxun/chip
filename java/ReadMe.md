@@ -48,3 +48,6 @@ echo $JAVA_HOME
 ~~~ shell
 sudo apt-get install ant maven ivy groovy gradle
 ~~~
+
+## Ref
+[Java Guide](https://github.com/Snailclimb/JavaGuide)

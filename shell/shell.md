@@ -146,6 +146,34 @@ rpm -qi --changelog <package name> | grep CVE-
 ~~~ shell
 mkdir -p /path/to/mount
 
+showmount -e [ip address]
+
 mount -t nfs -o rw -v [nfs ip address]:/path/to/dst /path/to/mount
 mount -t cifs -o username=[user],password=[pwd] //[cifs ip address]/path/to/dst /path/to/mount
+~~~
+
+### generate password
+
+[ref](https://www.cyberciti.biz/faq/linux-random-password-generator/)
+
+1. /dev/urandom file – Linux kernel’s random number generator source/interface. A read from the /dev/urandom device will not block waiting for more entropy.
+2. tr command – Translate or delete characters. Used to remove unwanted characters from /dev/urandom.
+3. head command – Output the first part of files.
+4. xargs command – build and execute command lines from standard input/pipe.
+
+~~~ shell
+genpasswd() {
+    local l=$1
+        [ "$l" == "" ] && l=16
+        tr -dc A-Za-z0-9_ < /dev/urandom | head -c ${l} | xargs
+}
+
+genpasswd() {
+    strings /dev/urandom | grep -o '[[:alnum:]]' | head -n 14 | tr -d '\n'; echo
+}
+~~~
+
+~~~ shell
+# Change password
+passwd root
 ~~~
