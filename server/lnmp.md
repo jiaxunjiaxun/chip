@@ -131,9 +131,11 @@ sudo apt-get install php5-mysql php5-curl php5-gd php5-intl php-pear php5-imagic
 ~~~ shell
 rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
+rpm -Uvh http://rpms.remirepo.net/enterprise/remi-release-7.rpm
 
 rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm
 rpm -Uvh https://mirror.webtatic.com/yum/el6/latest.rpm
+rpm -Uvh http://rpms.remirepo.net/enterprise/remi-release-6.rpm
 
 yum update
 yum install php70w-fpm php70w-cli php70w-opcache php70w-gd php70w-mcrypt php70w-mysql php70w-xml php70w-mbstring php70w-pdo php70w-json

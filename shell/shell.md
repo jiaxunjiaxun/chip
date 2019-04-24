@@ -27,6 +27,14 @@ wget -t [retry times] -w [delay seconds] -T [retry seconds] [url] -O [file]
 ps -ef | grep what_you_want | grep -v grep | cut -c 9-15 | xargs kill -9
 ~~~
 
+## Check Linux version
+
+~~~ shell
+cat /etc/redhat-release
+# Or
+lsb_release -a
+~~~
+
 ## Clean old kernel
 
 **Note**: kernel version, do not remove all
@@ -39,6 +47,14 @@ uname -r
 rpm -q kernel
 # remove unused kernel
 rpm -e kernel-xxxxxx
+~~~
+
+## Yum update
+
+~~~ shell
+yum clean all
+yum update glibc* yum* rpm* python*
+yum update
 ~~~
 
 ## Apt update
