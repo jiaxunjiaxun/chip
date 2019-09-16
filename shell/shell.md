@@ -193,3 +193,7 @@ genpasswd() {
 # Change password
 passwd root
 ~~~
+
+### user and group
+
+[ref](https://www.hostingadvice.com/how-to/linux-add-user-to-group/)
