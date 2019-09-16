@@ -43,6 +43,18 @@ source /etc/environment
 echo $JAVA_HOME
 ~~~
 
+~~~ shell
+sudo vim /etc/profile
+
+JAVA_HOME="PATH_TO_JAVA"
+JRE_HOME=$JAVA_HOME/jre
+CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib
+PATH=$JAVA_HOME/bin:$PATH
+export JAVA_HOME CLASSPATH PATH
+
+source /etc/profile
+~~~
+
 #### Other tools
 
 ~~~ shell
