@@ -34,3 +34,5 @@ gradle buildProduct
 
 [Gretty doc](http://akhikhl.github.io/gretty-doc/index.html)
 [Gretty src](https://github.com/akhikhl/gretty)
+
+[Ref](https://howtoprogram.xyz/2016/09/12/gradle-cache-location/)

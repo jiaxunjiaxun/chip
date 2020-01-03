@@ -8,12 +8,12 @@
 ## MySQL
 
 ### APT
-~~~ shell
+``` shell
 sudo apt-get install mysql-server mysql-client
-~~~
+```
 
 ### YUM
-~~~ shell
+``` shell
 yum localinstall https://dev.mysql.com/get/mysql57-community-release-el6-9.noarch.rpm
 yum update
 yum install mysql-community-server mysql-community-client
@@ -23,12 +23,14 @@ service mysqld start
 grep 'A temporary password' /var/log/mysqld.log | tail -1
 
 mysql_secure_installation
-~~~
+```
 
 
 ## Nginx
 
-~~~ shell
+[Ref](https://www.linode.com/docs/web-servers/nginx/how-to-configure-nginx/)
+
+``` shell
 sudo service apache2 stop
 sudo update-rc.d -f apache2 remove
 sudo apt-get remove apache2
@@ -37,32 +39,32 @@ sudo apt-get install nginx
 sudo service nginx start
 sudo service nginx restart
 sudo service nginx reload
-~~~
+```
 
 ### Test configure
 
-~~~ shell
+``` shell
 nginx -t -c /path/to/configure-file
-~~~
+```
 
 ### Install latest version
 
 #### APT
-~~~ shell
+``` shell
 sudo apt-get install python-software-properties
 sudo apt-get install software-properties-common
 sudo add-apt-repository ppa:nginx/stable
 sudo apt-get update
 sudo apt-get install nginx
-~~~
+```
 
 [ --- *OR* --- ]
 
-~~~ shell
+``` shell
 sudo apt-key add nginx_signing.key
 sudo cd /etc/apt
 sudo vim sources.list
-~~~
+```
 
 > Debian\
 > deb http://nginx.org/packages/debian/ [codename] nginx\
@@ -94,10 +96,10 @@ Ubuntu
 | 16.10   | yakkety  | x86_64, i386
 
 #### YUM
-~~~ shell
+``` shell
 cd /etc/yum.repos.d
 vim nginx.repo
-~~~
+```
 
 > [nginx]\
 > name=nginx repo\
@@ -113,22 +115,22 @@ vim nginx.repo
 
 Replace "OS" with "rhel" or "centos", depending on the distribution used, and "OSRELEASE" with "6" or "7", for 6.x or 7.x versions, respectively.
 
-~~~ shell
+``` shell
 yum install nginx
-~~~
+```
 
 ## PHP Fast CGI
 
 ### APT
 
-~~~ shell
+``` shell
 sudo apt-get install php5-fpm
 sudo apt-get install php5-mysql php5-curl php5-gd php5-intl php-pear php5-imagick php5-imap php5-mcrypt php5-memcache php5-ming php5-ps php5-pspell php5-recode php5-snmp php5-sqlite php5-tidy php5-xmlrpc php5-xsl
-~~~
+```
 
 ### YUM
 
-~~~ shell
+``` shell
 rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
 rpm -Uvh http://rpms.remirepo.net/enterprise/remi-release-7.rpm
@@ -139,12 +141,12 @@ rpm -Uvh http://rpms.remirepo.net/enterprise/remi-release-6.rpm
 
 yum update
 yum install php70w-fpm php70w-cli php70w-opcache php70w-gd php70w-mcrypt php70w-mysql php70w-xml php70w-mbstring php70w-pdo php70w-json
-~~~
+```
 
 ## Nginx conf
 
 - /etc/nginx/nginx.conf
-~~~ nginx
+``` nginx
 user www-data;
 worker_processes 4;
 pid /var/run/nginx.pid;
@@ -246,11 +248,11 @@ http {
 #		proxy      on;
 #	}
 #}
-~~~
+```
 
 - /etc/nginx/sites-available/*
 
-~~~ nginx
+``` nginx
 server {
     listen 80;
     listen [::]:80 ipv6only=on;
@@ -313,4 +315,9 @@ server {
         deny all;
     }
 }
-~~~
+```
+
+
+## NFS
+
+https://www.ringingliberty.com/2015/02/17/permission-denied-with-nginx-and-nfs/

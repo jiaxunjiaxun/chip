@@ -22,3 +22,6 @@ https://github.com/video-dev/hls.js
 配置服务器：
 .M3U8   application/x-mpegURL or vnd.apple.mpegURL
 .ts     video/MP2T
+
+
+https://www.cnblogs.com/baiyygynui/p/6323565.html
