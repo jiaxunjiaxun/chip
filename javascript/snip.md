@@ -295,3 +295,14 @@ function generateThumbnail() {
     thumbs.appendChild(c);
 }
 ~~~
+
+### jump to other page
+``` javascript
+window.setTimeout(function() {
+    if (openInThisTab === !1) {
+        window.open(url, '_blank');
+    } else {
+        window.location.assign(url);
+    }
+}, timeout);
+```

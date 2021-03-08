@@ -25,3 +25,17 @@ https://github.com/video-dev/hls.js
 
 
 https://www.cnblogs.com/baiyygynui/p/6323565.html
+
+https://www.alltechnerd.com/html5-video-players/
+
+https://blog.alexdevero.com/build-custom-html5-video-player/
+
+https://designmodo.com/video-player/
+
+https://www.jianshu.com/p/63f791c526d5
+
+https://www.jianshu.com/p/3b38f795616f
+
+https://cloud.tencent.com/developer/article/1615717
+
+https://videojs.com/blog/video-js-5-s-fluid-mode-and-playlist-picker/
