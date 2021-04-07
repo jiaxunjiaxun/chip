@@ -49,12 +49,17 @@ rpm -q kernel
 rpm -e kernel-xxxxxx
 ~~~
 
-## Yum update
+## Yum update / Dnf update
 
 ~~~ shell
 yum clean all
 yum update glibc* yum* rpm* python*
 yum update
+
+dnf check-update
+dnf update / dnf upgrade
+dnf autoremove
+dnf clean all
 ~~~
 
 ## Apt update
