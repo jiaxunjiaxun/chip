@@ -2,15 +2,12 @@
 
 ## maven conf/setting.xml
 
-``` xml
-<mirrors>
-    <mirror>
-        <id>alimaven</id>
-        <name>aliyun maven</name>
-        <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
-        <mirrorOf>central</mirrorOf>
-    </mirror>
-</mirrors>
+[Ref](https://developer.aliyun.com/mvn/guide)
+
+## Create web application
+
+```bash
+mvn archetype:generate -DgroupId=[ group id ] -DartifactId=[ project name ] -DarchetypeArtifactId=maven-archetype-webapp
 ```
 
-[Ref](https://codenotfound.com/maven-change-location-local-repository.html)
+##

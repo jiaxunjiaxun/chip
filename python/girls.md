@@ -18,6 +18,8 @@ python3 -m venv myvenv
 
 ```shell script
 source myvenv/bin/activate
+
+myvenv/bin/deactivate
 ```
 
 May be python 2.x or different version of python 3.x
