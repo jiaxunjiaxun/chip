@@ -66,3 +66,6 @@ pear upgrade *.tar
 [List](https://www.staticgen.com/)\
 [PHP Solution](https://sculpin.io/)\
 [PHP Solution](https://www.statie.org/)
+
+
+JAMstack
