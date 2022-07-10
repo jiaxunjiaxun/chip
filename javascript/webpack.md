@@ -104,7 +104,7 @@ module.exports = (env, argv) => {
             cleanOnceBeforeBuildPatterns: ['**/*',],
         }),
         new webpack.HotModuleReplacementPlugin(),
-        new HtmlWebpackPlugin({ template: path.resolve(__dirname, './src/index.html') }),
+        new HtmlWebpackPlugin({ template: path.resolve(__dirname, './src/index.html'), inject: 'body', scriptLoading: 'blocking' }),
         new MiniCssExtractPlugin({ filename: `${output_prefix}.css` }),
     ];
 
@@ -132,4 +132,101 @@ module.exports = (env, argv) => {
         "@babel/plugin-proposal-class-properties"
     ]
 }
+```
+
+---
+
+## Webpack 5
+
+``` javascript
+// loaders and plugins change a lot.
+
+const path = require('path');
+
+const HtmlWebpackPlugin = require('html-webpack-plugin'),
+    MiniCssExtractPlugin = require('mini-css-extract-plugin'),
+    CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin');
+
+module.exports = (env, argv) => {
+
+    let conf = {},
+        is_dev = 'development' === argv.mode;
+
+    conf.entry = './src/index.js';
+
+    conf.devtool = 'source-map';
+
+    conf.devServer = { static: './dist' };
+
+    conf.output = {
+        filename: 'bundle.js',
+        path: path.resolve(__dirname, 'dist'),
+        // images and fonts will be asset module
+        // https://webpack.docschina.org/configuration/output/#outputassetmodulefilename
+        assetModuleFilename: 'assets/img/[name][ext]',
+        clean: {
+            keep: (asset) => {
+                return asset.includes('assets/imgs');
+            }
+        },
+    };
+
+    conf.target = ['web', 'es5',];
+
+    conf.module = {
+        rules: [
+            {
+                test: /\.css$/i,
+                use: [
+                    is_dev ? 'style-loader' : MiniCssExtractPlugin.loader,
+                    {
+                        loader: 'css-loader',
+                    },
+                ],
+
+            },
+            {
+                // https://webpack.js.org/guides/asset-management/#loading-images
+                // https://webpack.docschina.org/guides/asset-modules/
+                test: /\.(png|svg|gif|jpe?g)$/i,
+                type: 'asset/resource',
+                generator: {
+                    filename: 'path/to/[hash][ext][query]',
+                },
+            },
+            {
+                test: /\.(otf|eot|ttf|woff2?)$/i,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                        },
+                    },
+                ],
+            },
+            {
+                test: /\.jsx?$/,
+                use: { loader: 'babel-loader', },
+                exclude: /(node_modules|bower_components)/,
+            },
+        ],
+    };
+
+    conf.plugins = [
+        new HtmlWebpackPlugin({ template: path.resolve(__dirname, './src/index.html'), inject: 'body', scriptLoading: 'blocking' }),
+        new MiniCssExtractPlugin({ filename: 'assets/css/m.css' }),
+    ];
+
+    conf.optimization = {
+        minimize: !is_dev,
+        minimizer: [
+            new CssMinimizerWebpackPlugin(),
+            '...',
+        ]
+    };
+
+    return conf;
+};
+
 ```
