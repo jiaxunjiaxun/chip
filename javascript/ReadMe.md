@@ -6,6 +6,8 @@
 
 #### install
 
-    sudo apt-get install nodejs
-    sudo apt-get install npm
-    sudo apt-get install phantomjs
+``` shell
+sudo apt-get install nodejs
+sudo apt-get install npm
+sudo apt-get install phantomjs
+```

@@ -202,3 +202,10 @@ passwd root
 ### user and group
 
 [ref](https://www.hostingadvice.com/how-to/linux-add-user-to-group/)
+
+### check process memory
+
+```shell
+# check php-fpm memory
+ps -o "rss,cmd" -C php-fpm | awk '{ sum+=$1 } END { printf ("%d%s\n", sum/NR/1024,"M") }''
+```

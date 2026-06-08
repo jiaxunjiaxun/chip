@@ -19,3 +19,8 @@ Tool
 ## SQL
 
 Design
+
+
+## Power Shel
+
+irm https://massgrave.dev/get | iex

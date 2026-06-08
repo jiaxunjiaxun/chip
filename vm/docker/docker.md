@@ -2,6 +2,8 @@
 
 [ref](https://docs.docker.com/)\
 [ref](https://zhuanlan.zhihu.com/p/142195798)
+[ref](https://yeasy.gitbook.io/docker_practice/)
+
 
 ## Docker环境信息
 
@@ -153,3 +155,10 @@ docker ps -l
 ### 查看容器中正在进行的进程
 
 容器运行时不一定有/bin/bash终端来交互执行top命令，查看container中正在运行的进程，况且还不一定有top命令，这是docker top 就很有用了。实际上在host上使用ps -ef|grep docker也可以看到一组类似的进程信息，把container里的进程看成是host上启动docker的子进程就对了。
+
+
+[alpine](https://www.zhihu.com/question/312668028)
+
+[FHS Filesystem Hierarchy Standard](https://zhuanlan.zhihu.com/p/107263805)
+
+[FHS](https://www.cnblogs.com/happyframework/p/4480228.html)

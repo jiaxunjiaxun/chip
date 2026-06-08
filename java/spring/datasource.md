@@ -107,3 +107,7 @@ datasource.driverClassName=com.mysql.jdbc.Driver
 	<property name="dataSource" ref="dataSource"/>
 </bean>
 ~~~
+
+[ref](https://zhuanlan.zhihu.com/p/271871226)
+[ref](https://zhuanlan.zhihu.com/p/145620650)
+[ref](https://juejin.cn/post/6906453629381804046)

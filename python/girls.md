@@ -10,6 +10,8 @@
 mkdir djgirls
 cd djgirls
 python3 -m venv myvenv
+
+python3 -m venv .venv
 ```
 
 ## 1. Working with virtualenv

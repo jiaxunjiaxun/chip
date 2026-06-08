@@ -81,19 +81,19 @@ sudo vim sources.list
 > deb-src http://nginx.org/packages/mainline/ubuntu/ codename nginx
 
 Debian
-| Version | Codename | Supported Platforms
-| ---     | ---      | ---
-| 7.x     | wheezy   | x86_64, i386
-| 8.x     | jessie   | x86_64, i386
-| 9.x     | stretch  | x86_64, i386
+| Version | Codename | Supported Platforms |
+| ------- | -------- | ------------------- |
+| 7.x     | wheezy   | x86_64, i386        |
+| 8.x     | jessie   | x86_64, i386        |
+| 9.x     | stretch  | x86_64, i386        |
 
 Ubuntu
-| Version | Codename | Supported Platforms
-| ---     | ---      | ---
-| 12.04   | precise  | x86_64, i386
-| 14.04   | trusty   | x86_64, i386, aarch64/arm64
-| 16.04   | xenial   | x86_64, i386, ppc64el, aarch64/arm64
-| 16.10   | yakkety  | x86_64, i386
+| Version | Codename | Supported Platforms                  |
+| ------- | -------- | ------------------------------------ |
+| 12.04   | precise  | x86_64, i386                         |
+| 14.04   | trusty   | x86_64, i386, aarch64/arm64          |
+| 16.04   | xenial   | x86_64, i386, ppc64el, aarch64/arm64 |
+| 16.10   | yakkety  | x86_64, i386                         |
 
 #### YUM
 ``` shell
@@ -317,6 +317,64 @@ server {
 }
 ```
 
+- security header
+
+``` nginx
+# snippets
+# /path/to/security_headers.conf
+
+add_header X-Frame-Options 'SAMEORIGIN';
+add_header X-Content-Type-Options 'nosniff';
+add_header X-XSS-Protection '1; mode=block';
+
+add_header Content-Security-Policy "default-src 'self' * 'unsafe-inline' 'unsafe-eval' blob: data: ;" always;
+
+add_header X-Download-Options 'noopen';
+add_header Referrer-Policy 'origin';
+add_header X-Permitted-Cross-Domain-Policies 'none';
+
+# virtual host
+server {
+    include /path/to/security_headers.conf;
+}
+```
+
+- cross origin
+
+``` nginx
+# virtual host
+map $http_origin $cors_header {
+    ~^https?://(www|app|api|m)\.example1\.com$ $http_origin;
+    ~^https?://(www|app|api|m)\.example2\.com$ $http_origin;
+    default '';
+}
+
+server {
+    location / {
+
+        if ($request_method = '(GET|POST|OPTIONS)') {
+            add_header 'Access-Control-Allow-Origin' $cors_header;
+            add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+            add_header 'Access-Control-Allow-Headers' 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,source';
+        }
+
+        if ($request_method = 'OPTIONS') {
+            add_header 'Access-Control-Max-Age' 86400;
+            add_header 'Content-Type' 'text/plain; charset=utf-8';
+            add_header 'Content-Length' 0;
+            return 204;
+        }
+
+        if ($request_method ~* '(GET|POST)') {
+            add_header 'Access-Control-Expose-Headers' 'Content-Length,Content-Range';
+        }
+
+        # ...
+        proxy_hide_header Access-Control-Allow-Origin;
+        proxy_hide_header X-Powered-By;
+    }
+}
+```
 
 ## NFS
 

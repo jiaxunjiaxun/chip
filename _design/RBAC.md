@@ -37,3 +37,11 @@ RBAC（Role-Based Access Control，基于角色的访问控制），就是用户
 ![](rbac_1_4.jpg)
 
 随着系统的日益庞大，为了方便管理，可引入角色组对角色进行分类管理，跟用户组不同，角色组不参与授权。例如：某电网系统的权限管理模块中，角色就是挂在区局下，而区局在这里可当作角色组，它不参于权限分配。另外，为方便上面各主表自身的管理与查找，可采用树型结构，如菜单树、功能树等，当然这些可不需要参于权限分配。
+
+
+[ref](https://zhuanlan.zhihu.com/p/513142061)
+[ref](https://www.jianshu.com/p/f395bd4c9065)
+[ref](https://blog.csdn.net/lionel1982/article/details/5900944)
+[ref](https://docs.spring.io/spring-security/reference/servlet/authorization/expression-based.html)
+[ref](https://www.digitalocean.com/community/tutorials/spring-security-role-based-access-authorization-example)
+[ref](https://www.codejava.net/frameworks/spring-boot/spring-boot-security-role-based-authorization-tutorial)

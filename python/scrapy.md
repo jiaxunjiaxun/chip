@@ -30,7 +30,7 @@ Scrapy是一个基于Twisted的异步处理框架，是纯Python实现的爬虫�
 
 大致了解了Scrapy框架的各个部分后，接下来我们开始创建一个Scrapy项目，可以使用如下命令：
 
-``` shell
+```shell
 scrapy startproject <Scrapy项目名>
 ```
 
@@ -57,7 +57,7 @@ scrapy startproject <Scrapy项目名>
 
 要创建Spider爬虫，首先我们要进入刚才创建的Scrapy目录中，再在命令行运行以下命令：
 
-``` shell
+```shell
 scrapy genspider <爬虫名字> <允许爬取的域名>
 ```
 
@@ -67,7 +67,7 @@ scrapy genspider <爬虫名字> <允许爬取的域名>
 
 创建spider爬虫后，spiders文件夹中多了一个firstspider.py，这个py文件就是我们创建爬虫，文件内容如下所示：
 
-``` python
+```python
 import scrapy
 
 class FirstspiderSpider(scrapy.Spider):
@@ -91,7 +91,7 @@ parse()提取数据并启动爬虫
 
 大致了解了firstspider.py文件内容后，我们接下来尝试在parse()方法中提取响应的数据，具体代码如下所示：
 
-``` python
+```python
 xpath_parse = response.xpath('/html/body/div[1]/div[2]/div[1]/div')
 for xpath in xpath_parse:
     item = {}
@@ -102,7 +102,7 @@ for xpath in xpath_parse:
 
 这样我们就成功提取到引擎响应的内容数据了，接着输入以下命令来运行spider爬虫：
 
-``` shell
+```shell
 scrapy crawl firstSpider
 ```
 
@@ -112,7 +112,7 @@ scrapy crawl firstSpider
 
 运行后发现我们结果里面多了很多log日志，这时可以通过在settings.py添加以下代码，就可以屏蔽这些log日志：
 
-``` python
+```python
 LOG_LEVEL = "WARNING"
 ```
 
@@ -130,7 +130,7 @@ items.py介绍
 
 为了避免拼写错误或者定义字段错误，我们可以在items.py文件中定义好字段，在上面提取数据中，我们获取了text、author内容，所以我们可以在items.py定义text和author字段，具体代码如下所示：
 
-``` python
+```python
 import scrapy
 
 class Test1Item(scrapy.Item):
@@ -142,7 +142,7 @@ class Test1Item(scrapy.Item):
 
 接着在firstspider.py文件中导入我们的items.py，以及修改item={}，如下所示：
 
-``` python
+```python
 from test1.items import Test1Item
 
 item = Test1Item()
@@ -154,7 +154,7 @@ item = Test1Item()
 
 例如我们获取到京东、淘宝、拼多多的数据时，我们可以items.py文件中定义好对应的字段，具体代码如下：
 
-``` python
+```python
 import scrapy
 
 class jingdongItem(scrapy.Item):
@@ -172,7 +172,7 @@ class pddItem(scrapy.Item):
 
 定义好字段后，这是我们通过在 pipeline.py 文件中编写代码，对不同的 item 数据进行区分，具体代码如下：
 
-``` python
+```python
 from test1.items import jingdongItem
 
 class Test1Pipeline:
@@ -194,7 +194,7 @@ Item Pipeline 为项目管道，当 Item 生成后，它就会自动被送到 It
 
 pipelines.py 内容如下所示：
 
-``` python
+```python
 from itemadapter import ItemAdapter
 
 class Test1Pipeline:
@@ -206,7 +206,7 @@ class Test1Pipeline:
 
 完成 pipeline 代码后，需要在 setting.py 中设置开启，开启方式很简单，只要把 setting.py 内容中的以下代码的注释取消即可：
 
-``` python
+```python
 ITEM_PIPELINES = {
     'test1.pipelines.Test1Pipeline': 300,
 }
@@ -229,7 +229,7 @@ ITEM_PIPELINES = {
 
 例如当我们有多个spider爬虫时，可以通过pipeline.py编写代码定义多个pipeline，具体代码如下：
 
-``` python
+```python
 class jingdongPipeline1:
     def process_item(self, item, spider):
         if spider.name=="jingdong":
@@ -247,7 +247,7 @@ class taobaoPipeline:
 
 定义好pipeline后，我们要在settings.py中设置pipeline权重，也就是那个pipeline先运行，具体代码如下：
 
-``` python
+```python
 ITEM_PIPELINES = {
    'test1.pipelines.jingdongPipeline': 300,
    'test1.pipelines.taobaoPipeline': 301,
@@ -258,7 +258,7 @@ ITEM_PIPELINES = {
 
 在上面我们已经提取到想要的数据，接下来将数据传到pipeline中，传输很简单，我们只需要使用yield，代码如下：
 
-``` python
+```python
 yield item
 ```
 
@@ -273,7 +273,7 @@ yield item
 第一种：使用start_requests()方法
 我们通过在spider爬虫中，也就是我们创建的firstspider.py中添加以下代码，具体代码如下：
 
-``` python
+```python
 def start_requests(self):
     for i in range(1,3):
         url = f'https://quotes.toscrape.com/page/{i}/'
@@ -284,7 +284,7 @@ def start_requests(self):
 
 我们可以通过parse()方法中实现翻页，具体代码如下：
 
-``` python
+```python
 for i in range(2,3):
     url = f'https://quotes.toscrape.com/page/{i}/'
     yield scrapy.Request(url = url, callback = self.parse)
@@ -294,7 +294,7 @@ for i in range(2,3):
 
 但都要使用scrapy.Request()方法，该方法能构建一个requests，同时指定提取数据的callback函数
 
-``` python
+```python
 scrapy.Requeset(url, callback, method = 'GET', headers, cookies, meta, dont_filter = False)
 ```
 
@@ -315,7 +315,7 @@ scrapy.Requeset(url, callback, method = 'GET', headers, cookies, meta, dont_filt
 
 当我们要把数据保存成文件的时候，不需要任何额外的代码，只要执行如下代码即可：
 
-``` shell
+```shell
 scrapy crawl spider爬虫名 -o xxx.json #保存为JSON文件
 scrapy crawl spider爬虫名 -o xxx.jl或jsonlines #每个Item输出一行json
 scrapy crawl spider爬虫名 -o xxx.csv #保存为csv文件
@@ -328,7 +328,7 @@ scrapy crawl spider爬虫名 -o xxx.xml #保存为xml文件
 
 当我们要把数据保存在MongoDB数据库的时候，就要使用Item Pipeline模块了，也就是说要在pipeline.py中编写代码，具体代码如下所示：
 
-``` python
+```python
 from pymongo import  MongoClient
 client=MongoClient()
 collection=client["test1"]["firstspider"]
@@ -359,7 +359,7 @@ class Test1Pipeline:
 
 发现它是POST请求，请求URL链接是http://www.xinfadi.com.cn/getPriceData.html，current是翻页的重要参数，limit是每页有多少行数据，我们可以构造消息体，代码如下所示：
 
-``` python
+```python
 data = {
     'limit': '20',
     'current': page
@@ -370,7 +370,7 @@ data = {
 
 或者我们可以根据测试和观察规律，自己构造URL链接，通过观察分析，请求的URL链接可以为：
 
-``` shell
+```shell
 http://www.xinfadi.com.cn/getPriceData.html?limit=20&current=1
 http://www.xinfadi.com.cn/getPriceData.html?limit=20&current=2
 http://www.xinfadi.com.cn/getPriceData.html?limit=20&current=3
@@ -380,7 +380,7 @@ http://www.xinfadi.com.cn/getPriceData.html?limit=20&current=3
 
 分析北京新发地价格行情后，接下来我们首先创建一个Scrapy项目，使用如下命令：
 
-``` shell
+```shell
 scrapy startproject Vegetables
 ```
 
@@ -390,13 +390,13 @@ scrapy startproject Vegetables
 
 接下来创建spider爬虫，使用如下命令：
 
-``` shell
+```shell
 scrapy genspider vegetables www.xinfadi.com.cn
 ```
 
 创建后vegetables.py内容如下所示：
 
-``` python
+```python
 import scrapy
 
 class VegetablesSpider(scrapy.Spider):
@@ -412,7 +412,7 @@ class VegetablesSpider(scrapy.Spider):
 
 在提取数据前，我们首先把要爬取的数据字段在items.py文件中定义好，代码如下所示：
 
-``` python
+```python
 import scrapy
 
 class VegetablesItem(scrapy.Item):
@@ -426,7 +426,7 @@ class VegetablesItem(scrapy.Item):
 
 定义好字段后，接下来将在创建的vegetables.py文件中进行数据的提取，具体代码如下：
 
-``` python
+```python
 import scrapy
 from Vegetables.items import VegetablesItem
 
@@ -453,7 +453,7 @@ class VegetablesSpider(scrapy.Spider):
 
 最后我们在settings.py设置引擎的启动，代码如下所示：
 
-``` python
+```python
 ITEM_PIPELINES = {
    'Vegetables.pipelines.VegetablesPipeline': 300,
 }
@@ -461,7 +461,7 @@ ITEM_PIPELINES = {
 
 在这里我们就不保存数据在MongoDB数据库里面了，我们直接启动Spider爬虫并把数据以csv格式输出，使用如下命令：
 
-``` shell
+```shell
 scrapy crawl vegetables -o 11.c
 ```
 

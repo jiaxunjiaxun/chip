@@ -131,3 +131,15 @@ Logistic回归的扩展softmax可以应用于多分类领域，如手写字识�
 三、人工神经网络应用领域
 
 目前深度神经网络已经应用与计算机视觉，自然语言处理，语音识别等领域并取得很好的效果。
+
+https://github.com/microsoft/generative-ai-for-beginners
+
+## 学习资源
+
+https://microsoft.github.io/ai-edu/
+
+https://microsoft.github.io/generative-ai-for-beginners/#/translations/cn/
+
+https://microsoft.github.io/AI-System/
+
+https://microsoft.github.io/AI-For-Beginners/
